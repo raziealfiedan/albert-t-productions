@@ -358,7 +358,7 @@ p, li, blockquote, dd { text-wrap: pretty; }
   background: #070707; color: #fff; isolation: isolate;
 }
 .hero__media { position: absolute; inset: 0; z-index: 0; }
-.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; transform: scale(1.08); animation: kenburns 18s var(--ease) forwards; filter: saturate(.9) contrast(1.05); }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; transform: scale(1.04); animation: heroBreath 16s ease-in-out infinite alternate; filter: saturate(.9) contrast(1.05); }
 .hero__media::after { /* warm grade + legibility */
   content: ""; position: absolute; inset: 0;
   background:
@@ -1036,9 +1036,11 @@ body::before {
 
 /* Hero: keep Albert clear of the headline on wide screens */
 @media (min-width: 900px) {
-  .hero__media img { width: 130%; max-width: none; margin-left: -12%; object-position: 62% 40%; transform: translateX(8%) scale(1.06); animation: kenburnsR 18s var(--ease) forwards; }
+  .hero__media img { width: 130%; max-width: none; margin-left: -12%; object-position: 62% 40%; transform: translateX(8%) scale(1.04); animation: heroBreathR 16s ease-in-out infinite alternate; }
 }
-@keyframes kenburnsR { to { transform: translateX(8%) scale(1); } }
+@keyframes heroBreathR { from { transform: translateX(8%) scale(1.03); } to { transform: translateX(8%) scale(1.12); } }
+@keyframes heroBreath { from { transform: scale(1.03); } to { transform: scale(1.12); } }
+@media (prefers-reduced-motion: reduce) { .hero__media img { animation: none !important; } }
 
 /* ---------- Parallax card slider ---------- */
 .cs { overflow: clip; }
