@@ -857,3 +857,6 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
   .js [data-reveal], .js [data-split] .line > span { opacity: 1 !important; transform: none !important; clip-path: none !important; }
   .statement__text .w { opacity: 1; }
 }
+
+.split__body--sticky { position: static; }
+@media (min-width: 900px) { .split__body--sticky { position: sticky; top: 110px; } }
