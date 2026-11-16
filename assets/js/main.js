@@ -1,4 +1,4 @@
-/* ALBERT.T Productions — interactions (no dependencies) */
+/* ALBERT.T Productions: interactions (no dependencies) */
 (() => {
   "use strict";
   const doc = document.documentElement;
@@ -33,7 +33,7 @@
       n.nodeValue = chars.join("");
     }
   }
-  const glueTargets = $$("p, li, h1, h2, h3, h4, blockquote, figcaption, dd, .lead, summary, .line, .quote p")
+  const glueTargets = $$("p, li, h1, h2, h3, h4, blockquote, figcaption, dd, .lead, summary, .line, .quote p, .strip .muted")
     .filter((el) => !el.closest(".no-glue, nav, .ticker, .menu, .chips, button, .btn") && !el.querySelector(".line"));
   glueTargets.forEach(noWidows);
 
@@ -123,6 +123,23 @@
     };
     reduce ? tcs.forEach((t) => (t.textContent = "00:00:24:00")) : tick();
   }
+
+  /* ---------- Count-up numbers ---------- */
+  $$("[data-count]").forEach((el) => {
+    const end = parseInt(el.dataset.count, 10), dur = 1400;
+    if (reduce || !("IntersectionObserver" in window)) { el.textContent = end; return; }
+    const o = new IntersectionObserver((es) => {
+      if (!es[0].isIntersecting) return; o.disconnect();
+      const t0 = performance.now();
+      const step = (t) => {
+        const k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 4);
+        el.textContent = Math.round(end * e);
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, { threshold: 0.6 });
+    o.observe(el);
+  });
 
   /* ---------- Fit the giant wordmarks to their width ---------- */
   const fitWords = () => $$("[data-fit]").forEach((el) => {
@@ -370,7 +387,7 @@
     });
     $("#sendEmail")?.addEventListener("click", () => {
       if (!valid()) return;
-      const subj = `Project enquiry — ${form.elements.name.value.trim()}`;
+      const subj = `Project enquiry: ${form.elements.name.value.trim()}`;
       location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(build())}`;
     });
     const min = new Date(); form.elements.date && (form.elements.date.min = min.toISOString().slice(0, 10));

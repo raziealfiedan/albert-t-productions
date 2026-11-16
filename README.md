@@ -1,4 +1,4 @@
-# ALBERT.T Productions — Website (Draft 1)
+# ALBERT.T Productions - Website (Draft 1)
 
 This is a static, multi-page website for ALBERT.T Productions (ALBERT.T ENTERPRISE), a film, video and media studio in Kota Kinabalu, Sabah. It needs no build step and no framework. Upload it to GitHub and it runs as is.
 
@@ -32,15 +32,17 @@ To use a custom domain such as `albertt.my`, enter it under Settings → Pages �
 | Ash | `#A3A099` / `#5F5D57` | Muted text (dark and light modes) |
 
 **Fonts** are self-hosted and free under the SIL Open Font License.
-- **Archivo** (variable width) is used for headlines and the wordmark. The headlines use its condensed widths and the logo uses its expanded width.
-- **Instrument Sans** is used for body text and the user interface.
-- **JetBrains Mono** is used for small labels, timecode and the camera HUD details.
+- **Bricolage Grotesque** is used for headlines and titles.
+- **Hanken Grotesk** is used for body text and the user interface.
+- **Instrument Serif Italic** is used for one accent word in the big headlines.
+- **DM Mono** is used for small labels, timecode and the camera HUD details.
+- **Archivo** is used only for the logo wordmark (the two `*-outline` files are static copies used for the outlined text).
 
 **Logo**: The logo is a typographic wordmark, `ALBERT●T`. The dot between the words is a blinking orange "REC" light.
 
 ## Things to replace before launch
 - **Showreel and project videos**: every play button opens a pop-up. To show a real video, upload it to YouTube and paste its video ID into the `data-video=""` attribute. For example, `data-video="dQw4w9WgXcQ"`. Until then, the pop-up shows a "Coming soon" card.
-- **Client logos** (Home page, "Our clients"): replace each `<div class="logo-slot">Client logo</div>` with `<div class="logo-slot"><img src="assets/img/clients/name.png" alt="Client name"></div>`.
+- **Client logos** (Home page): the 28 logos from the company profile are in `assets/img/clients/`. They are listed in the order of the profile. To add or remove one, edit the `logos__track` rows in `index.html`.
 - **Social links**: the Instagram and Facebook icons currently link to `#`. Search the pages for `aria-label="Instagram"` and `aria-label="Facebook"` and add the real URLs.
 - **Photos**: these are free stock photos from Unsplash (see the list below). Swap them for Albert's own shots when they are ready. Search for `images.unsplash.com/photo-...` in the HTML, or save the images in `assets/img/` and point to them there.
 - **Testimonials**: the three quotes come from the company profile. Add the clients' names or companies when you have their permission.
