@@ -329,6 +329,8 @@
       const title = t.dataset.title || "Showreel";
       slot.innerHTML = `<div class="modal__ph">${img ? `<img src="${img}" alt="">` : ""}<div><span class="mono" style="color:var(--ember)">● Coming soon</span><strong class="h3">${title}</strong><span style="opacity:.75;max-width:40ch">The full film will play here once it's uploaded to YouTube.</span></div></div>`;
     }
+    const cap = $(".modal__cap", modal);
+    if (cap) { cap.children[0].textContent = t.dataset.title || ""; cap.children[1].textContent = t.dataset.meta || ""; }
     modal.classList.add("is-open");
     doc.style.overflow = "hidden";
     $(".modal__close", modal).focus();
@@ -404,6 +406,47 @@
     });
     const min = new Date(); form.elements.date && (form.elements.date.min = min.toISOString().slice(0, 10));
   }
+
+  /* ---------- Browse rows: arrows ---------- */
+  $$(".row").forEach((row) => {
+    const track = $(".row__track", row);
+    const btns = $$(".row__btn", row);
+    if (!track || !btns.length) return;
+    const sync = () => {
+      const max = track.scrollWidth - track.clientWidth - 2;
+      btns.forEach((b) => (b.disabled = Number(b.dataset.dir) < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max));
+    };
+    btns.forEach((b) => b.addEventListener("click", () =>
+      track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.82, behavior: reduce ? "auto" : "smooth" })));
+    track.addEventListener("scroll", sync, { passive: true });
+    addEventListener("resize", sync);
+    sync();
+  });
+
+  /* ---------- Billboard ---------- */
+  $$("[data-bb]").forEach((bb) => {
+    const slides = $$(".bb__slide", bb), dots = $$(".bb__dot", bb);
+    if (slides.length < 2) return;
+    let i = 0, timer = 0;
+    const show = (n) => {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle("is-active", k === i));
+      dots.forEach((d, k) => (k === i ? d.setAttribute("aria-current", "true") : d.removeAttribute("aria-current")));
+    };
+    const play = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => show(i + 1), 6500); };
+    dots.forEach((d, k) => d.addEventListener("click", () => { show(k); play(); }));
+    bb.addEventListener("mouseenter", () => clearInterval(timer));
+    bb.addEventListener("mouseleave", play);
+    bb.addEventListener("focusin", () => clearInterval(timer));
+    let x0 = null;
+    bb.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    bb.addEventListener("touchend", (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 48) { show(i + (dx < 0 ? 1 : -1)); play(); }
+    }, { passive: true });
+    play();
+  });
 
   /* ---------- Client logos: auto-scroll, swipe or drag ---------- */
   $$(".logos").forEach((row) => {
