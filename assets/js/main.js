@@ -481,12 +481,10 @@
 })();
 
 /* Parallax card slider */
-(() => {
-  const track = document.querySelector("[data-cslider]");
-  if (!track) return;
+document.querySelectorAll("[data-cslider]").forEach((track) => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const cards = [...track.children];
-  const bar = document.querySelector(".cs__bar i");
+  const bar = track.closest(".cs").querySelector(".cs__bar i");
   const sec = track.closest(".cs");
   let ticking = false;
   const update = () => {
@@ -519,4 +517,5 @@
   track.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") return; down = true; moved = false; sx = e.clientX; sl = track.scrollLeft; });
   addEventListener("pointermove", (e) => { if (!down) return; const dx = e.clientX - sx; if (Math.abs(dx) > 3) { moved = true; track.classList.add("is-drag"); } track.scrollLeft = sl - dx; });
   addEventListener("pointerup", () => { if (!down) return; down = false; track.classList.remove("is-drag"); if (moved) track.scrollBy({ left: 1, behavior: "smooth" }); });
-})();
+  track.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+});
