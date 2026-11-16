@@ -392,7 +392,7 @@ p, li, blockquote, dd { text-wrap: pretty; }
   font-size: 17vw; user-select: none;
   transform: translateY(.02em);
   color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.9);
-  -webkit-mask-image: linear-gradient(180deg, #000 10%, rgba(0,0,0,.06) 100%); mask-image: linear-gradient(180deg, #000 10%, rgba(0,0,0,.06) 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.04) 100%); mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.04) 100%);
 }
 .bigdot { display: inline-block; width: .15em; height: .15em; border-radius: 50%; background: var(--accent); margin: 0 .05em; vertical-align: baseline; box-shadow: 0 0 .25em color-mix(in srgb, var(--accent) 60%, transparent); animation: rec 1.6s steps(1) infinite; }
 
@@ -645,7 +645,7 @@ p, li, blockquote, dd { text-wrap: pretty; }
   font-family: "Archivo Outline", var(--f-brand); font-weight: 900; line-height: .8; letter-spacing: -.045em;
   font-size: 17vw; text-align: center; margin: clamp(32px, 6vw, 80px) 0 14px; white-space: nowrap;
   color: transparent; -webkit-text-stroke: 1.5px var(--text);
-  -webkit-mask-image: linear-gradient(180deg, #000 10%, rgba(0,0,0,.06) 100%); mask-image: linear-gradient(180deg, #000 10%, rgba(0,0,0,.06) 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.04) 100%); mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.04) 100%);
   user-select: none;
 }
 .footer__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
