@@ -1063,3 +1063,22 @@ body::before {
 .cs__bar { height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; margin-top: 4px; }
 .cs__bar i { display: block; height: 100%; width: 20%; background: var(--accent); border-radius: 3px; transform-origin: left; transform: translateX(var(--x, 0%)); transition: transform .15s linear; }
 @media (prefers-reduced-motion: reduce) { .cs__card { transform: none; opacity: 1; } .cs__art img { transform: translateX(-50%); } }
+
+/* ---------- 3D card carousel (About) ---------- */
+.cs--3d { background: #08080A; color: var(--text); margin: clamp(24px, 4vw, 56px) clamp(8px, 1.4vw, 20px) 0; border-radius: clamp(20px, 3vw, 36px); padding: clamp(56px, 8vw, 110px) 0 clamp(40px, 6vw, 80px); position: relative; }
+.cs--3d .s-head { text-align: center; justify-items: center; }
+.cs--3d .s-head__row { display: grid; justify-items: center; gap: 0; }
+.cs--3d .h2 { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-stretch: 100%; letter-spacing: -.01em; font-size: clamp(38px, 6vw, 76px); line-height: 1; }
+.cs--3d .cs__nav { display: none !important; }
+.cs--3d .cs__track-wrap { margin-top: clamp(16px, 3vw, 40px); perspective: 1400px; perspective-origin: 50% 40%; }
+.cs--3d .cs__track { --cw: clamp(230px, 62vw, 300px); padding: 28px calc(50% - var(--cw) / 2) 36px; scroll-snap-type: x mandatory; scroll-padding-inline: 0; gap: clamp(6px, 1vw, 14px); perspective: 1400px; transform-style: preserve-3d; }
+.cs--3d .cs__card { --r: 0; width: var(--cw); scroll-snap-align: center; transform: rotateY(calc(var(--r) * -34deg)) scale(calc(1 - var(--a) * .1)); opacity: calc(1 - var(--a) * .38); transform-origin: 50% 50%; backface-visibility: hidden; }
+@media (min-width: 900px) { .cs--3d .cs__track { --cw: clamp(260px, 21vw, 320px); } }
+.cs--3d .cs__card figure { position: relative; }
+.cs--3d .cs__art { aspect-ratio: 3 / 4.3; border-radius: clamp(18px, 2vw, 26px); box-shadow: 0 40px 60px -34px #000; }
+.cs--3d .cs__art::after { background: linear-gradient(180deg, transparent 38%, rgba(8,8,10,.78)); }
+.cs--3d .cs__card figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 18px 24px; text-align: center; justify-items: center; gap: 6px; pointer-events: none; }
+.cs--3d .cs__card figcaption small { font: 500 10px var(--f-mono); letter-spacing: .14em; color: rgba(255,255,255,.72); }
+.cs--3d .cs__card figcaption b { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.05; color: #fff; text-wrap: balance; letter-spacing: 0; }
+.cs--3d .cs__bar { max-width: 240px; margin: 4px auto 0; }
+@media (prefers-reduced-motion: reduce) { .cs--3d .cs__card { transform: none; opacity: 1; } }

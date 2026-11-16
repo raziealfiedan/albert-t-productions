@@ -498,6 +498,7 @@
       const d = Math.max(-1.6, Math.min(1.6, (r.left + r.width / 2 - mid) / r.width));
       c.style.setProperty("--d", reduce ? 0 : d.toFixed(3));
       c.style.setProperty("--a", reduce ? 0 : Math.min(1, Math.abs(d)).toFixed(3));
+      c.style.setProperty("--r", reduce ? 0 : Math.max(-1, Math.min(1, d)).toFixed(3));
     });
     if (bar) {
       const max = track.scrollWidth - track.clientWidth;
