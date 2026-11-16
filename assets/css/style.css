@@ -1054,3 +1054,25 @@ body::before {
   .hero__media img { width: 130%; max-width: none; margin-left: -12%; object-position: 62% 40%; transform: translateX(8%) scale(1.06); animation: kenburnsR 18s var(--ease) forwards; }
 }
 @keyframes kenburnsR { to { transform: translateX(8%) scale(1); } }
+
+/* ---------- Parallax card slider ---------- */
+.cs { overflow: clip; }
+.cs .s-head__row { align-items: end; }
+.cs__nav { display: none; gap: 8px; }
+@media (hover: hover) and (min-width: 900px) { .cs__nav { display: flex; } }
+.cs__track-wrap { --edge: max(var(--pad), calc((100vw - var(--max)) / 2)); margin-top: clamp(8px, 2vw, 20px); }
+.cs__track { list-style: none; margin: 0; padding: 18px var(--edge) 22px; display: flex; gap: clamp(12px, 1.8vw, 24px); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge); scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; cursor: grab; }
+.cs__track::-webkit-scrollbar { display: none; }
+.cs__track.is-drag { cursor: grabbing; scroll-snap-type: none; }
+.cs__card { flex: none; width: clamp(250px, 74vw, 360px); scroll-snap-align: start; --d: 0; --a: 0; transform: scale(calc(1 - var(--a) * .07)); opacity: calc(1 - var(--a) * .32); transition: opacity .2s linear; will-change: transform; transform-origin: 50% 60%; }
+@media (min-width: 900px) { .cs__card { width: clamp(320px, 31vw, 440px); } }
+.cs__card figure { margin: 0; }
+.cs__art { position: relative; aspect-ratio: 4 / 5; border-radius: clamp(16px, 2vw, 24px); overflow: hidden; background: var(--surface-2); box-shadow: var(--shadow); isolation: isolate; }
+.cs__art img { position: absolute; top: 0; left: 50%; width: 150%; max-width: none; height: 100%; object-fit: cover; transform: translateX(calc(-50% + var(--d) * -9%)) scale(1.02); will-change: transform; -webkit-user-drag: none; user-select: none; pointer-events: none; }
+.cs__art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(8,8,10,.55)); pointer-events: none; }
+.cs__card figcaption { display: grid; gap: 2px; padding: 14px 4px 0; }
+.cs__card figcaption small { font: 500 11px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); }
+.cs__card figcaption b { font-family: var(--f-display); font-weight: 700; font-size: clamp(17px, 1.8vw, 21px); letter-spacing: -.01em; }
+.cs__bar { height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; margin-top: 4px; }
+.cs__bar i { display: block; height: 100%; width: 20%; background: var(--accent); border-radius: 3px; transform-origin: left; transform: translateX(var(--x, 0%)); transition: transform .15s linear; }
+@media (prefers-reduced-motion: reduce) { .cs__card { transform: none; opacity: 1; } .cs__art img { transform: translateX(-50%); } }

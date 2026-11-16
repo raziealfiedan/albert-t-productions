@@ -497,3 +497,43 @@
   }
   $$("[data-year]").forEach((y) => (y.textContent = new Date().getFullYear()));
 })();
+
+/* Parallax card slider */
+(() => {
+  const track = document.querySelector("[data-cslider]");
+  if (!track) return;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cards = [...track.children];
+  const bar = document.querySelector(".cs__bar i");
+  const sec = track.closest(".cs");
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const tr = track.getBoundingClientRect();
+    const mid = tr.left + tr.width / 2;
+    cards.forEach((c) => {
+      const r = c.getBoundingClientRect();
+      const d = Math.max(-1.6, Math.min(1.6, (r.left + r.width / 2 - mid) / r.width));
+      c.style.setProperty("--d", reduce ? 0 : d.toFixed(3));
+      c.style.setProperty("--a", reduce ? 0 : Math.min(1, Math.abs(d)).toFixed(3));
+    });
+    if (bar) {
+      const max = track.scrollWidth - track.clientWidth;
+      const p = max > 0 ? track.scrollLeft / max : 0;
+      bar.style.setProperty("--x", (p * 400).toFixed(1) + "%");
+    }
+  };
+  const req = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  track.addEventListener("scroll", req, { passive: true });
+  addEventListener("resize", req);
+  addEventListener("load", req);
+  update();
+  sec.querySelectorAll(".cs__nav .row__btn").forEach((b) =>
+    b.addEventListener("click", () => track.scrollBy({ left: +b.dataset.dir * (cards[0].offsetWidth + 20), behavior: "smooth" }))
+  );
+  // mouse drag
+  let down = false, sx = 0, sl = 0, moved = false;
+  track.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") return; down = true; moved = false; sx = e.clientX; sl = track.scrollLeft; });
+  addEventListener("pointermove", (e) => { if (!down) return; const dx = e.clientX - sx; if (Math.abs(dx) > 3) { moved = true; track.classList.add("is-drag"); } track.scrollLeft = sl - dx; });
+  addEventListener("pointerup", () => { if (!down) return; down = false; track.classList.remove("is-drag"); if (moved) track.scrollBy({ left: 1, behavior: "smooth" }); });
+})();
