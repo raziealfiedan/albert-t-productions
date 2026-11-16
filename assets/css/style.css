@@ -1085,3 +1085,13 @@ body::before {
 
 /* About carousel: no surrounding box */
 .cs--3d { background: transparent; border: 0; border-radius: 0; margin: 0; }
+
+/* Mobile hero: keep the headline and copy clear of Albert's face */
+@media (max-width: 899px) {
+  .hero__media img {
+    position: absolute; left: 0; right: 0; bottom: 0; top: auto;
+    height: 58%; width: 100%; object-position: 60% 30%; transform-origin: 60% 100%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%);
+            mask-image: linear-gradient(180deg, transparent 0, #000 22%);
+  }
+}
