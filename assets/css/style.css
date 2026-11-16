@@ -1106,3 +1106,9 @@ body::before {
 .cs--3d > .wrap > .cs__bar { margin-inline: auto; }
 .cs--3d .cs__card figcaption { grid-template-columns: minmax(0, 1fr); }
 .cs--3d .cs__card figcaption b { max-width: 100%; overflow-wrap: anywhere; }
+
+/* Portfolio download button next to the Recent work heading */
+.cs--3d .s-head__row { gap: 10px; }
+.cs--3d .s-head__row .btn + .btn { margin-top: 0; }
+@media (min-width: 700px) { .cs--3d .s-head__row { grid-auto-flow: row; } }
+.cs--3d .s-head__row .btn { width: min(100%, 320px); justify-content: space-between; }
