@@ -811,21 +811,6 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .is-leaving .shutter { transform: translateY(0); transition-duration: .5s; }
 .is-loaded:not(.is-leaving) .shutter { transition-delay: .1s; }
 
-/* ---------- Custom cursor ---------- */
-.cursor { position: fixed; top: 0; left: 0; z-index: 250; pointer-events: none; display: none; opacity: 0; transition: opacity .3s; }
-.cursor.is-active { opacity: 1; }
-@media (hover: hover) and (pointer: fine) { .cursor { display: block; } }
-.cursor__dot { position: absolute; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: var(--accent); transition: transform .3s var(--ease), opacity .3s; }
-.cursor__ring {
-  position: absolute; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--text) 40%, transparent);
-  display: grid; place-items: center; font: 600 10px var(--f-mono); letter-spacing: .14em; text-transform: uppercase;
-  transition: width .45s var(--ease), height .45s var(--ease), margin .45s var(--ease), background-color .3s, border-color .3s, color .3s;
-  color: transparent;
-}
-.cursor.is-hover .cursor__ring { width: 56px; height: 56px; margin: -28px 0 0 -28px; border-color: var(--accent); }
-.cursor.is-label .cursor__ring { width: 88px; height: 88px; margin: -44px 0 0 -44px; background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.cursor.is-label .cursor__dot { transform: scale(0); }
 
 /* ---------- Reveal animations ---------- */
 .js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform 1.1s var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }

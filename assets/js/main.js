@@ -213,24 +213,6 @@
     el.addEventListener("pointerleave", () => (el.style.transform = ""));
   });
 
-  /* ---------- Custom cursor ---------- */
-  const cur = $(".cursor");
-  if (cur && fine && !reduce) {
-    const dot = $(".cursor__dot", cur), ring = $(".cursor__ring", cur);
-    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
-    addEventListener("pointermove", (e) => { mx = e.clientX; my = e.clientY; cur.classList.add("is-active"); dot.style.transform = `translate(${mx}px, ${my}px)`; });
-    const loop = () => { rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18; ring.style.transform = `translate(${rx}px, ${ry}px)`; requestAnimationFrame(loop); };
-    loop();
-    document.addEventListener("pointerover", (e) => {
-      const lab = e.target.closest("[data-cursor]");
-      const hov = e.target.closest("a, button, summary, label, input, textarea, select");
-      cur.classList.toggle("is-label", !!lab);
-      cur.classList.toggle("is-hover", !lab && !!hov);
-      ring.textContent = lab ? lab.dataset.cursor : "";
-    });
-    document.documentElement.addEventListener("pointerleave", () => cur.classList.remove("is-active"));
-  }
-
   /* ---------- Coverflow ---------- */
   $$("[data-flow]").forEach((root) => {
     const stage = $(".flow__stage", root);
