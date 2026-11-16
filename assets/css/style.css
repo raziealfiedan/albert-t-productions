@@ -1037,3 +1037,14 @@ body::before {
   -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.25) 100%);
   mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.25) 100%);
 }
+
+/* Photo trios */
+.trio { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.trio .frame { --ar: 3 / 2; aspect-ratio: 3 / 2; }
+.trio .frame img { width: 100%; height: 100%; object-fit: cover; }
+.trio .frame:nth-child(1) { grid-column: span 2; --ar: 16 / 9; aspect-ratio: 16 / 9; }
+.trio--kit { margin-bottom: clamp(28px, 4vw, 48px); }
+@media (min-width: 900px) {
+  .trio { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .trio .frame, .trio .frame:nth-child(1) { grid-column: auto; --ar: 3 / 2; aspect-ratio: 3 / 2; }
+}
