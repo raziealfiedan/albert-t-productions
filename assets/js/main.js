@@ -57,7 +57,7 @@
   window.addEventListener("pageshow", (e) => { if (e.persisted) doc.classList.remove("is-leaving"); doc.classList.add("is-loaded"); });
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
-    if (!a || reduce) return;
+    if (!a || reduce || a.matches("[data-video], [data-drive]") || a.getAttribute("href") === "#") return;
     const url = new URL(a.href, location.href);
     const internal = url.origin === location.origin && !a.target && !a.hasAttribute("download") && !e.metaKey && !e.ctrlKey && !e.shiftKey;
     const samePageHash = url.pathname === location.pathname && url.hash;
@@ -311,6 +311,8 @@
       const title = t.dataset.title || "Showreel";
       slot.innerHTML = `<div class="modal__ph">${img ? `<img src="${img}" alt="">` : ""}<div><span class="mono" style="color:var(--ember)">● Coming soon</span><strong class="h3">${title}</strong><span style="opacity:.75;max-width:40ch">The full film will play here once it's uploaded to YouTube.</span></div></div>`;
     }
+    const alt = $(".modal__alt", modal);
+    if (alt) { alt.hidden = !drive; if (drive) alt.href = `https://drive.google.com/file/d/${encodeURIComponent(drive)}/view`; }
     const cap = $(".modal__cap", modal);
     if (cap) { cap.children[0].textContent = t.dataset.title || ""; cap.children[1].textContent = t.dataset.meta || ""; }
     modal.classList.add("is-open");

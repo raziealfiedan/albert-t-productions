@@ -1112,3 +1112,6 @@ body::before {
 .cs--3d .s-head__row .btn + .btn { margin-top: 0; }
 @media (min-width: 700px) { .cs--3d .s-head__row { grid-auto-flow: row; } }
 .cs--3d .s-head__row .btn { width: min(100%, 320px); justify-content: space-between; }
+
+.modal__alt { margin-left: auto; font: 500 12px var(--f-mono); letter-spacing: .06em; color: var(--ember); text-decoration: underline; text-underline-offset: 3px; }
+.modal__alt[hidden] { display: none; }
