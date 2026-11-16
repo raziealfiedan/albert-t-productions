@@ -1048,3 +1048,9 @@ body::before {
   .trio { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .trio .frame, .trio .frame:nth-child(1) { grid-column: auto; --ar: 3 / 2; aspect-ratio: 3 / 2; }
 }
+
+/* Hero: keep Albert clear of the headline on wide screens */
+@media (min-width: 900px) {
+  .hero__media img { width: 130%; max-width: none; margin-left: -12%; object-position: 62% 40%; transform: translateX(8%) scale(1.06); animation: kenburnsR 18s var(--ease) forwards; }
+}
+@keyframes kenburnsR { to { transform: translateX(8%) scale(1); } }
