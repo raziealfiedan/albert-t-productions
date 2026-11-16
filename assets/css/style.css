@@ -1115,3 +1115,8 @@ body::before {
 
 .modal__alt { margin-left: auto; font: 500 12px var(--f-mono); letter-spacing: .06em; color: var(--ember); text-decoration: underline; text-underline-offset: 3px; }
 .modal__alt[hidden] { display: none; }
+
+/* Close button sits above the player so it never covers the video */
+.modal__box { overflow: visible; }
+.modal__slot { border-radius: 20px 20px 0 0; overflow: hidden; }
+.modal__close { top: -58px; right: 0; }
