@@ -393,6 +393,46 @@
     const min = new Date(); form.elements.date && (form.elements.date.min = min.toISOString().slice(0, 10));
   }
 
+  /* ---------- Client logos: auto-scroll, swipe or drag ---------- */
+  $$(".logos").forEach((row) => {
+    const dir = Number(row.dataset.dir) || 1;
+    const half = () => row.scrollWidth / 2;
+    let pos = dir < 0 ? half() : 0, held = false, resume = 0, drag = null;
+    row.scrollLeft = pos;
+    const hold = () => { held = true; clearTimeout(resume); };
+    const release = () => { clearTimeout(resume); resume = setTimeout(() => { pos = row.scrollLeft; held = false; }, 1800); };
+    row.addEventListener("touchstart", hold, { passive: true });
+    row.addEventListener("touchend", release, { passive: true });
+    row.addEventListener("touchcancel", release, { passive: true });
+    row.addEventListener("wheel", () => { hold(); release(); }, { passive: true });
+    row.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "mouse") return;
+      hold(); drag = { x: e.clientX, left: row.scrollLeft }; row.classList.add("is-drag");
+    });
+    addEventListener("pointermove", (e) => { if (drag) row.scrollLeft = drag.left - (e.clientX - drag.x); });
+    addEventListener("pointerup", () => { if (drag) { drag = null; row.classList.remove("is-drag"); release(); } });
+    row.addEventListener("scroll", () => {
+      if (!held) return;
+      const h = half();
+      if (row.scrollLeft >= h) row.scrollLeft -= h;
+      else if (row.scrollLeft <= 0) row.scrollLeft += h;
+      pos = row.scrollLeft;
+    }, { passive: true });
+    if (reduce) return;
+    const speed = 0.45;
+    const tick = () => {
+      if (!held) {
+        pos += speed * dir;
+        const h = half();
+        if (pos >= h) pos -= h;
+        if (pos <= 0) pos += h;
+        row.scrollLeft = pos;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+
   /* ---------- Footer: live KK time (12-hour) + year ---------- */
   const clock = $("[data-clock]");
   if (clock) {
