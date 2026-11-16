@@ -314,12 +314,15 @@
     doc.style.overflow = "";
   }
   document.addEventListener("click", (e) => {
-    const t = e.target.closest("[data-video]");
+    const t = e.target.closest("[data-video], [data-drive]");
     if (!t || !modal) return;
     e.preventDefault();
-    const id = t.dataset.video.trim();
+    const id = (t.dataset.video || "").trim();
+    const drive = (t.dataset.drive || "").trim();
     const slot = $(".modal__slot", modal);
-    if (id) {
+    if (drive) {
+      slot.innerHTML = `<iframe src="https://drive.google.com/file/d/${encodeURIComponent(drive)}/preview" title="${(t.dataset.title || "Video").replace(/"/g, "")}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    } else if (id) {
       slot.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0" title="Video player" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     } else {
       const img = t.dataset.poster || "";
@@ -336,15 +339,24 @@
   $$("[data-filter-group]").forEach((g) => {
     const chips = $$(".chip", g);
     const items = $$(g.dataset.filterGroup);
+    const more = $("[data-more]", g);
+    let f = "all", expanded = false;
+    const apply = () => {
+      items.forEach((it) => {
+        const match = f === "all" || it.dataset.cat.split(" ").includes(f);
+        const show = match && (f !== "all" || expanded || !it.hasAttribute("data-extra"));
+        const was = it.classList.contains("is-out");
+        it.classList.toggle("is-out", !show);
+        if (show && was) { it.classList.remove("is-in"); requestAnimationFrame(() => it.classList.add("is-in")); }
+      });
+      if (more) more.parentElement.hidden = f !== "all" || expanded;
+    };
     chips.forEach((c) => c.addEventListener("click", () => {
       chips.forEach((x) => x.setAttribute("aria-pressed", String(x === c)));
-      const f = c.dataset.filter;
-      items.forEach((it) => {
-        const show = f === "all" || it.dataset.cat.split(" ").includes(f);
-        it.classList.toggle("is-out", !show);
-        if (show) { it.classList.remove("is-in"); requestAnimationFrame(() => it.classList.add("is-in")); }
-      });
+      f = c.dataset.filter; apply();
     }));
+    more?.addEventListener("click", () => { expanded = true; apply(); });
+    apply();
   });
 
   /* ---------- Contact form → WhatsApp / Email ---------- */
