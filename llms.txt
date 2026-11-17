@@ -30,8 +30,8 @@ Terms: 50% deposit on confirmation, balance after delivery, finished video deliv
 
 ## Pages
 - [Home](https://alberttproductions.com/): overview and recent work
-- [Services](https://alberttproductions.com/services.html): services, packages, prices and FAQ
-- [Work](https://alberttproductions.com/work.html): 59 projects with links to watch each one
-- [About](https://alberttproductions.com/about.html): the company and Albert Tengkuyu
-- [Contact](https://alberttproductions.com/contact.html): get a quote
+- [Services](https://alberttproductions.com/services): services, packages, prices and FAQ
+- [Work](https://alberttproductions.com/work): 59 projects with links to watch each one
+- [About](https://alberttproductions.com/about): the company and Albert Tengkuyu
+- [Contact](https://alberttproductions.com/contact): get a quote
 - [Portfolio PDF](https://alberttproductions.com/ALBERT.T-Productions-Portfolio-2026.pdf): downloadable portfolio
