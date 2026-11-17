@@ -1160,3 +1160,15 @@ body::before {
 .idcard__mark { display: none; }
 .idcard__foot a { white-space: nowrap; }
 @media (max-width: 480px) { .idcard__foot span { display: none; } }
+
+/* Footer: socials under the blurb on desktop; icons on contact links */
+@media (min-width: 760px) {
+  .footer__top { display: contents; }
+  .footer__top .brand { order: 1; justify-self: start; }
+  .footer__blurb { order: 2; }
+  .footer__top .socials { order: 3; margin-top: 4px; }
+}
+.footer__ct { display: inline-flex; align-items: center; gap: 12px; }
+.footer__ci { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line-strong); display: grid; place-items: center; flex: none; color: var(--accent-text); transition: background-color .3s, color .3s, border-color .3s; }
+.footer__ci svg { width: 16px; height: 16px; }
+.footer__ct:hover .footer__ci { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
