@@ -1120,3 +1120,4 @@ body::before {
 .modal__box { overflow: visible; }
 .modal__slot { border-radius: 20px 20px 0 0; overflow: hidden; }
 .modal__close { top: -58px; right: 0; }
+.frame--clean::after { display: none; }
