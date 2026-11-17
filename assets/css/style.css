@@ -1172,3 +1172,10 @@ body::before {
 .footer__ci { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line-strong); display: grid; place-items: center; flex: none; color: var(--accent-text); transition: background-color .3s, color .3s, border-color .3s; }
 .footer__ci svg { width: 16px; height: 16px; }
 .footer__ct:hover .footer__ci { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* Desktop: Recent work buttons side by side */
+@media (min-width: 700px) {
+  .cs--3d .s-head__row { grid-template-columns: auto auto; justify-content: center; column-gap: 14px; row-gap: 0; }
+  .cs--3d .s-head__row .h2 { grid-column: 1 / -1; }
+  .cs--3d .s-head__row .btn { width: auto; min-width: 280px; }
+}
