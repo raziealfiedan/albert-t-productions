@@ -77,3 +77,6 @@ To use a custom domain such as `albertt.my`, enter it under Settings â†’ Pages â
 - Accessibility: a skip link, visible focus states, labelled controls and keyboard navigation. Motion is reduced when the visitor's device asks for it
 - SEO: page titles and meta descriptions, Open Graph tags, and LocalBusiness structured data on the Home page
 - Typography rule: no paragraph or heading ends with a lone word on its last line. The script keeps at least three words on the last line of every text block
+
+## Custom domain
+The site is served at `alberttproductions.com` (see the `CNAME` file). DNS lives at Porkbun: four `A` records for the apex pointing to GitHub Pages (185.199.108.153, .109.153, .110.153, .111.153) and a `CNAME` for `www` pointing to `raziealfiedan.github.io`. In GitHub, Settings, Pages, keep "Enforce HTTPS" ticked.
