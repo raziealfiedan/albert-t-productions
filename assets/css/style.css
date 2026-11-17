@@ -1121,3 +1121,42 @@ body::before {
 .modal__slot { border-radius: 20px 20px 0 0; overflow: hidden; }
 .modal__close { top: -58px; right: 0; }
 .frame--clean::after { display: none; }
+
+/* ---------- About: vision + company card ---------- */
+.vision { background: var(--bg-2); }
+.vision__grid { display: grid; gap: clamp(36px, 6vw, 80px); align-items: start; }
+.vision__l { display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr); }
+.vision__lead { font: 400 clamp(22px, 2.6vw, 34px)/1.3 var(--f-display); letter-spacing: -.01em; color: var(--text); max-width: 28ch; }
+.vision__lead em { font-family: var(--f-serif); font-style: italic; color: var(--accent-text); font-size: 1.1em; }
+.values { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; padding: 0; }
+.values li { display: grid; gap: 6px; align-content: start; padding: 18px 18px 16px; border: 1px solid var(--line); border-radius: 18px; background: color-mix(in srgb, var(--surface) 60%, transparent); }
+.values span { font: 500 11px var(--f-mono); letter-spacing: .14em; color: var(--accent-text); }
+.values b { font: 700 clamp(16px, 1.6vw, 19px)/1.15 var(--f-display); }
+.values p { font-size: 14px; line-height: 1.45; color: var(--muted); }
+.idcard { position: relative; overflow: hidden; isolation: isolate; padding: clamp(24px, 3vw, 40px); border-radius: 28px; border: 1px solid var(--line-strong);
+  background: radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%), var(--surface); box-shadow: var(--shadow); display: grid; gap: clamp(22px, 3vw, 34px); }
+.idcard__c { position: absolute; width: 16px; height: 16px; border: 1.5px solid var(--accent); opacity: .8; }
+.idcard__c--tl { top: 14px; left: 14px; border-right: 0; border-bottom: 0; } .idcard__c--tr { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
+.idcard__c--bl { bottom: 14px; left: 14px; border-right: 0; border-top: 0; } .idcard__c--br { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
+.idcard__top { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; padding: 8px 8px 0; }
+.idcard__logo { display: grid; gap: 7px; }
+.idcard__logo .brand__word { font-size: clamp(30px, 3.4vw, 44px); }
+.idcard__logo .brand__sub { font-size: 11px; }
+.idcard__tag { display: inline-flex; gap: 8px; align-items: center; font: 500 11px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--line-strong); border-radius: 99px; color: var(--muted); }
+.idcard__tag i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+.idcard__facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; padding: 0 8px; border-top: 1px solid var(--line); position: relative; z-index: 1; }
+.idcard__facts > div { padding: 16px 0; border-bottom: 1px solid var(--line); display: grid; gap: 5px; }
+.idcard__facts .wide { grid-column: 1 / -1; }
+.idcard__facts dt { font: 500 11px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.idcard__facts dd { font: 600 clamp(16px, 1.5vw, 19px)/1.35 var(--f-body); }
+.idcard__foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 8px 6px; font: 500 11px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); position: relative; z-index: 1; }
+.idcard__foot a { display: inline-flex; gap: 8px; align-items: center; color: var(--accent-text); }
+.idcard__foot svg { width: 14px; height: 14px; }
+.idcard__mark { position: absolute; right: -2%; bottom: -14%; z-index: 0; font: 900 clamp(200px, 26vw, 340px)/1 var(--f-brand); letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--text) 9%, transparent); pointer-events: none; }
+@media (min-width: 960px) { .vision__grid { grid-template-columns: 1.05fr .95fr; } }
+@media (max-width: 420px) { .values { grid-template-columns: 1fr; } }
+.idcard__logo .brand__word { font-size: clamp(24px, 2.5vw, 34px); }
+.idcard__mark { -webkit-text-stroke: 0; color: color-mix(in srgb, var(--text) 4.5%, transparent); font-size: clamp(180px, 22vw, 300px); right: 0; bottom: -18%; }
+.idcard__mark { display: none; }
+.idcard__foot a { white-space: nowrap; }
+@media (max-width: 480px) { .idcard__foot span { display: none; } }
